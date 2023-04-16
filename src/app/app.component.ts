@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { switchState } from 'src/models/store';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-16';
+  public title = 'Angular-16 Signals';
+  public switchState = switchState;
+
+  public changeState() {
+    this.switchState() !== 'on'
+      ? this.switchState.set('on')
+      : this.switchState.set('off');
+  }
 }
